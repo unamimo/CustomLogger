@@ -14,15 +14,38 @@
 //	- Runtime branching(e.g., logging only on certain conditions)
 #pragma once
 #include <iostream>
+#include <fstream>
 
 class CustomLogger
 {
 public:
+	CustomLogger(const std::string fileName) {
+		outfile.open(fileName, std::ios_base::app);
+		if (!outfile.is_open())
+		{
+			std::cerr << "Cannot open log file" << "\n";
+		}
+	}
+
+	~CustomLogger() {
+		outfile.close();
+	}
+
 	template <typename ... Types>
 	void LogToConsole(Types&&... types) {
 		(std::cout << ... << types);
 	}
 
-private:
+	// creates a new file with fileName
+	template <typename ... Types>
+	void LogToFile(Types&&... types) {
+		//std::ofstream outfile;
+		//// "LogFile.txt"
+		//outfile.open(fileName, std::ios_base::app);
+		(outfile << ... << types);
+		outfile.close();
+	}
 
+private:
+	std::ofstream outfile;
 };
