@@ -13,10 +13,10 @@
 //	- Log content changing based on runtime values
 //	- Runtime branching(e.g., logging only on certain conditions)
 #pragma once
-#include <iostream>
+#include <iostream>		// std::string	
 #include <fstream>		// file writing
 #include <chrono>		// getting current time
-#include <format>
+#include <format>		// time formatting
 
 class CustomLogger
 {
@@ -37,18 +37,20 @@ public:
 		const auto timeUTC = std::chrono::system_clock::now();
 		const auto localTime = std::chrono::current_zone()->to_local(timeUTC);
 
-		return std::format("{:%Y-%m-%d %X}", localTime);
+		return std::format("[{:%Y-%m-%d %X}]", localTime);
 	}
 
 	template <typename ... Types>
 	void LogToConsole(Types&&... types) {
-		((std::cout << types << ", "), ...);
+		((std::cout << types << " "), ...);
+		std::cout << "\n";
 	}
 
 	// creates a new file with fileName
 	template <typename ... Types>
 	void LogToFile(Types&&... types) {
-		((outfile << types << ", "), ...);
+		((outfile << types << " "), ...);
+		std::cout << "\n";
 		outfile.close();
 	}
 
