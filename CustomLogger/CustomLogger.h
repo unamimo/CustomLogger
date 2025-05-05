@@ -57,6 +57,7 @@ public:
 		outfile.close();
 	}
 
+	int testVal = 8;
 private:
 	std::ofstream outfile;
 };
