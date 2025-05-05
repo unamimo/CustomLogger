@@ -33,6 +33,7 @@ public:
 		outfile.close();
 	}
 
+	// For log messages with timestamps
 	std::string getCurrentTime() {
 		const auto timeUTC = std::chrono::system_clock::now();
 		const auto localTime = std::chrono::current_zone()->to_local(timeUTC);
@@ -40,6 +41,7 @@ public:
 		return std::format("[{:%Y-%m-%d %X}]", localTime);
 	}
 
+	// include a space between arguments, but can be removed
 	template <typename ... Types>
 	void LogToConsole(Types&&... types) {
 		((std::cout << types << " "), ...);
@@ -47,6 +49,7 @@ public:
 	}
 
 	// creates a new file with fileName
+	// include a space between arguments, but can be removed
 	template <typename ... Types>
 	void LogToFile(Types&&... types) {
 		((outfile << types << " "), ...);
