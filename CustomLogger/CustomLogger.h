@@ -42,16 +42,13 @@ public:
 
 	template <typename ... Types>
 	void LogToConsole(Types&&... types) {
-		(std::cout << ... << types);
+		((std::cout << types << ", "), ...);
 	}
 
 	// creates a new file with fileName
 	template <typename ... Types>
 	void LogToFile(Types&&... types) {
-		//std::ofstream outfile;
-		//// "LogFile.txt"
-		//outfile.open(fileName, std::ios_base::app);
-		(outfile << ... << types);
+		((outfile << types << ", "), ...);
 		outfile.close();
 	}
 
