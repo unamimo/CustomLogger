@@ -14,7 +14,9 @@
 //	- Runtime branching(e.g., logging only on certain conditions)
 #pragma once
 #include <iostream>
-#include <fstream>
+#include <fstream>		// file writing
+#include <chrono>		// getting current time
+#include <format>
 
 class CustomLogger
 {
@@ -29,6 +31,13 @@ public:
 
 	~CustomLogger() {
 		outfile.close();
+	}
+
+	std::string getCurrentTime() {
+		const auto timeUTC = std::chrono::system_clock::now();
+		const auto localTime = std::chrono::current_zone()->to_local(timeUTC);
+
+		return std::format("{:%Y-%m-%d %X}", localTime);
 	}
 
 	template <typename ... Types>
