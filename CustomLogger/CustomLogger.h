@@ -44,7 +44,7 @@ public:
 	// include a space between arguments, but can be removed
 	template <typename ... Types>
 	void LogToConsole(Types&&... types) {
-		((std::cout << types << " "), ...);
+		((std::cout << types << " "), ...);	// fold expression
 		std::cout << "\n";
 	}
 

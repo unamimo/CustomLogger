@@ -23,5 +23,8 @@
     <ClInclude Include="CustomLogger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CustomTimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
