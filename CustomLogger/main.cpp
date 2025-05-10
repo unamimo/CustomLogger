@@ -25,14 +25,14 @@ int main()
 
     // Log current time
     mTimer.startTimer();
-    mCustomLogger.LogToConsole(mCustomLogger.getCurrentTime());
+    mCustomLogger.LogToConsole(mTimer.getCurrentTime());
     mTimer.stopTimer();
     mTimer.outputTimeTaken();
 
 
     // Log current time and message
     mTimer.startTimer();
-    mCustomLogger.LogToConsole(mCustomLogger.getCurrentTime(), "Log with timestamp");
+    mCustomLogger.LogToConsole(mTimer.getCurrentTime(), "Log with timestamp");
     mTimer.stopTimer();
     mTimer.outputTimeTaken();
 

@@ -24,6 +24,14 @@ public:
         std::cout << "took " << duration_cast<std::chrono::microseconds>(end - start).count() << " microseconds" << "\n\n";
     }
 
+    // For log messages with timestamps
+    std::string getCurrentTime() {
+        const auto timeUTC = std::chrono::system_clock::now();
+        const auto localTime = std::chrono::current_zone()->to_local(timeUTC);
+
+        return std::format("[{:%Y-%m-%d %X}]", localTime);
+    }
+
 private:
     std::chrono::steady_clock::time_point start;
     std::chrono::steady_clock::time_point end;
