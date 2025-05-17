@@ -48,8 +48,21 @@ int main()
 
 
     // Logging based on condition
+    // https://cplusplus.com/reference/cstdio/vprintf/
     mTimer.startTimer();
     mCustomLogger.LogToConsole(mCustomLogger.testVal == 8 ? "True" : "False");
     mTimer.stopTimer();
     mTimer.outputTimeTaken();
+
+    // Unsafe logger test
+    mCustomLogger.unsafeLogger("Log: %i %s \n", 1, "hello");
+    mCustomLogger.unsafeLogger("Log: %i %s %s \n", 2, "hello", "world");
+    mCustomLogger.unsafeLogger("Log: %d %s \n", 2, "hello", "world", "how", "are", "you?");
+    mCustomLogger.unsafeLogger("Log: %f %s \n");
+    mCustomLogger.unsafeLogger("Log: %f%f %s \n");
+    mCustomLogger.unsafeLogger("Log: %f%f%f %s \n");
+    mCustomLogger.unsafeLogger("Log: %f%f%f%f %s \n");
+    mCustomLogger.unsafeLogger("Log: %f%f%f%f%f %s \n");
+    const char* pass = "psswrd";
+    mCustomLogger.unsafeLogger("Log: %f %s \n");
 }
